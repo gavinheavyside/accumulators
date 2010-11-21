@@ -1,6 +1,14 @@
 = accumulators
 
-Description goes here.
+Statistical accumulators for Ruby
+
+== TODO ==
+
+* Running Mean
+* Running Variance/Std Deviation (sample and population)
+* Combination of mean and mean-variance
+* Skew?
+* Weighted Means
 
 == Contributing to accumulators
  
