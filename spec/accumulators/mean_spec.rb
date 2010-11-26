@@ -68,10 +68,59 @@ describe "Accumulators" do
       end
     end
 
-    context "correctness of int additions"
+    context "correctness of int additions" do
+      before :each do
+        @mean = Accumulators::Mean.new
+      end
 
-    context "correctness of float additions"
+      it "should return count of 1 and mean of 5 when 5 is added" do
+        @mean.add(5)
+        @mean.count.should == 1
+        @mean.mean.should be_within(EPSILON).of(5)
+      end
 
-    context "correctness of accumulator additions"
+      it "should calculate the mean correctly for a set of integers" do
+        1.upto(10) {|i| @mean.add i}
+        @mean.count.should == 10
+        @mean.mean.should be_within(EPSILON).of((1..10).reduce(:+).to_f/10)
+      end
+
+      it "should calculate the mean correctly for a random set of 1000 integers" do
+        vals = []
+        1000.times do
+          vals << rand(100000)
+          @mean.add(vals.last)
+        end
+
+        @mean.mean.should be_within(EPSILON).of(vals.reduce(:+).to_f/vals.size)
+      end
+    end
+
+    context "correctness of float additions" do
+      before :each do
+        @mean = Accumulators::Mean.new
+      end
+
+      it "should calculate the mean correctly for a set of floats" do
+        1.upto(10) {|i| @mean.add i+0.1}
+        @mean.count.should == 10
+        @mean.mean.should be_within(EPSILON).of((1..10).map{|i| i+0.1}.reduce(:+)/10)
+      end
+
+      it "should calculate the mean correctly for a random set of 1000 floats" do
+        vals = []
+        1000.times do
+          vals << rand * 1000000
+          @mean.add vals.last
+        end
+        @mean.mean.should be_within(EPSILON).of(vals.reduce(:+)/vals.size)
+      end
+    end
+
+    context "correctness of accumulator additions" do
+      before :each do
+        @mean = Accumulator.new
+      end
+    end
   end
 end
