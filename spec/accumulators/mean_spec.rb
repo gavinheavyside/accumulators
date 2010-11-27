@@ -2,8 +2,6 @@ require 'spec_helper'
 
 require 'accumulators/mean'
 
-EPSILON = 0.00001
-
 describe "Accumulators" do
   describe "Mean" do
     before :each do
@@ -16,9 +14,8 @@ describe "Accumulators" do
       end
 
       it "returns count and mean of 0 before anything is added to it" do
-        mean = Accumulators::Mean.new
-        mean.count.should == 0
-        mean.mean.should be_within(EPSILON).of(0.0)
+        @mean.count.should == 0
+        @mean.mean.should be_within(EPSILON).of(0.0)
       end
 
     end

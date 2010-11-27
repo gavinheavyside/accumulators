@@ -7,6 +7,8 @@ require 'accumulators'
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
+EPSILON = 0.00001
+
 RSpec.configure do |config|
   
 end
