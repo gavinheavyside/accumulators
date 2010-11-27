@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-require 'accumulators/mean'
-
 describe "Accumulators" do
   describe "Mean" do
     before :each do

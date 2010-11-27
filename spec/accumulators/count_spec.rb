@@ -1,8 +1,5 @@
 require 'spec_helper'
 
-require 'accumulators/count'
-
-
 describe "Accumulators" do
   describe "Count" do
     before :each do
