@@ -1,37 +1,15 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
+
+require 'accumulators/mean'
 
 EPSILON = 0.00001
 
-module Accumulators
-  class Mean
-    attr_reader :count, :mean
-
-    def initialize
-      @count = 0
-      @mean = 0.0
-    end
-
-    def add(rhs)
-      if rhs.is_a? Numeric
-        value_to_add = rhs.to_f
-        @mean = @mean + (value_to_add - @mean)/(@count + 1)
-        @count += 1
-      elsif rhs.is_a? Accumulators::Mean
-        sum = @mean * @count
-        rhs_sum = rhs.mean * rhs.count
-        @count = @count + rhs.count
-        @mean = (sum + rhs_sum) / @count
-      else
-        raise ArgumentError.new("Can only add numbers to a Mean Accumulator")
-      end
-    end
-  end
-end
-
-
-
 describe "Accumulators" do
   describe "Mean" do
+    before :each do
+      @mean = Accumulators::Mean.new
+    end
+
     context "Creation" do
       it "can be created" do
         lambda{ Accumulators::Mean.new}.should_not raise_error
@@ -46,10 +24,6 @@ describe "Accumulators" do
     end
 
     context "adding numbers or distributions" do
-      before :each do
-        @mean = Accumulators::Mean.new
-      end
-
       it "allows integers to be added" do
         lambda{@mean.add 5}.should_not raise_error
       end
@@ -69,10 +43,6 @@ describe "Accumulators" do
     end
 
     context "correctness of int additions" do
-      before :each do
-        @mean = Accumulators::Mean.new
-      end
-
       it "should return count of 1 and mean of 5 when 5 is added" do
         @mean.add(5)
         @mean.count.should == 1
@@ -97,10 +67,6 @@ describe "Accumulators" do
     end
 
     context "correctness of float additions" do
-      before :each do
-        @mean = Accumulators::Mean.new
-      end
-
       it "should calculate the mean correctly for a set of floats" do
         1.upto(10) {|i| @mean.add i+0.1}
         @mean.count.should == 10
@@ -118,8 +84,18 @@ describe "Accumulators" do
     end
 
     context "correctness of accumulator additions" do
-      before :each do
-        @mean = Accumulator.new
+      it "should combine two means correctly" do
+        m2 = Accumulators::Mean.new
+        vals = []
+        500.times do
+          vals << rand * 1000000
+          @mean.add vals.last
+          vals << rand * 100000
+          m2.add vals.last
+        end
+        @mean.add(m2)
+        @mean.count.should == 1000
+        @mean.mean.should be_within(EPSILON).of(vals.reduce(:+)/vals.size)
       end
     end
   end
