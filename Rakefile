@@ -15,7 +15,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "accumulators"
   gem.homepage = "http://github.com/hgavin/accumulators"
   gem.license = "MIT"
-  gem.summary = %Q{Statiscal accumulators for Ruby}
+  gem.summary = %Q{Statistical accumulators for Ruby}
   gem.description = %Q{Statistical accumulators for Ruby}
   gem.email = "gavin@heavyside.co.uk"
   gem.authors = ["Gavin Heavyside"]
