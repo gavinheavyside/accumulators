@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{accumulators}
-  s.version = "0.1.2"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Gavin Heavyside"]
-  s.date = %q{2010-11-27}
+  s.date = %q{2010-11-28}
   s.description = %q{Statistical accumulators for Ruby}
   s.email = %q{gavin@heavyside.co.uk}
   s.extra_rdoc_files = [
@@ -43,7 +43,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Statiscal accumulators for Ruby}
+  s.summary = %q{Statistical accumulators for Ruby}
   s.test_files = [
     "spec/accumulators/count_spec.rb",
     "spec/accumulators/mean_spec.rb",
