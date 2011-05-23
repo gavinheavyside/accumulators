@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{accumulators}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Gavin Heavyside"]
@@ -33,16 +33,16 @@ Gem::Specification.new do |s|
     "lib/accumulators.rb",
     "lib/accumulators/count.rb",
     "lib/accumulators/mean.rb",
-    "lib/accumulators/meanvariance.rb",
-    "spec/accumulators/count_spec.rb",
-    "spec/accumulators/mean_spec.rb",
-    "spec/accumulators/meanvariance_spec.rb",
+    "lib/accumulators/mean_variance.rb",
+    "spec/lib/accumulators/count_spec.rb",
+    "spec/lib/accumulators/mean_spec.rb",
+    "spec/lib/accumulators/mean_variance_spec.rb",
     "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/hgavin/accumulators}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
+  s.rubygems_version = %q{1.4.2}
   s.summary = %q{Statistical accumulators for Ruby}
 
   if s.respond_to? :specification_version then
