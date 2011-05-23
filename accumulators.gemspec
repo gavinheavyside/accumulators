@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{accumulators}
-  s.version = "0.4.0"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Gavin Heavyside"]
@@ -31,10 +31,12 @@ Gem::Specification.new do |s|
     "lib/accumulators/count.rb",
     "lib/accumulators/mean.rb",
     "lib/accumulators/mean_variance.rb",
+    "lib/accumulators/minmax.rb",
     "lib/accumulators/sum.rb",
     "spec/lib/accumulators/count_spec.rb",
     "spec/lib/accumulators/mean_spec.rb",
     "spec/lib/accumulators/mean_variance_spec.rb",
+    "spec/lib/accumulators/min_max_spec.rb",
     "spec/lib/accumulators/sum_spec.rb",
     "spec/spec_helper.rb"
   ]
