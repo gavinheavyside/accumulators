@@ -19,7 +19,7 @@ module Accumulators
         @count = @count + rhs.count
         @mean = (sum + rhs_sum) / @count
       else
-        raise ArgumentError.new("Can only add numbers to a Mean Accumulator")
+        raise ArgumentError.new("You may not add #{rhs.class} to #{self.class}")
       end
     end
   end

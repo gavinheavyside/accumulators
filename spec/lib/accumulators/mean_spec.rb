@@ -31,7 +31,9 @@ module Accumulators
       end
 
       it "raises an ArgumentError if a string is added" do
-        lambda{mean.add "1.5"}.should raise_error(ArgumentError)
+        lambda{mean.add "1.5"}.should raise_error(
+          ArgumentError,
+          "You may not add String to Accumulators::Mean")
       end
     end
 

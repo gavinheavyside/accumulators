@@ -30,11 +30,15 @@ module Accumulators
       end
 
       it "raises an ArgumentError if a string is added" do
-        lambda{ meanvar.add "1.5" }.should raise_error(ArgumentError)
+        lambda{ meanvar.add "1.5" }.should raise_error(
+          ArgumentError,
+          "You may not add String to Accumulators::MeanVariance")
       end
 
       it "raises an ArgumentError if a Mean accumulator is added" do
-        lambda{ meanvar.add Mean.new }.should raise_error(ArgumentError)
+        lambda{ meanvar.add Mean.new }.should raise_error(
+          ArgumentError,
+          "You may not add Accumulators::Mean to Accumulators::MeanVariance")
       end
     end
 

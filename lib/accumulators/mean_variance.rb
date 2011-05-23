@@ -28,7 +28,7 @@ module Accumulators
           @sumsq = newSumsq
         end
       else
-        raise ArgumentError
+        raise ArgumentError.new("You may not add #{rhs.class} to #{self.class}")
       end
     end
 
