@@ -89,6 +89,7 @@ Available accumulators
 
 * Count
 * Sum
+* MinMax
 * Mean
 * MeanVariance
 
@@ -97,7 +98,6 @@ TODO
 
 * Skew?
 * Weighted Means
-* min, max, and min-max
 
 Contributing to accumulators
 ----------------------------
