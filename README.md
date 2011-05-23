@@ -3,9 +3,11 @@ accumulators
 
 A set of statistical accumulators for Ruby. There is a range of containers for
 different measures, such as count, mean, and mean-variance. You can add values to
-the containers, and ask for their respective statistical measures. The accumulators
-use incremental algorithms to update their measures with each addition, so you can
-add lots of values without needing lots of memory.
+the containers, and ask for their respective statistical measures. 
+
+Where appropriate the accumulators use incremental algorithms to update their
+measures with each addition, so you can add lots of values without needing lots of
+memory. (see http://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#On-line_algorithm)
 
 Installation
 ------------
