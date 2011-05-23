@@ -56,6 +56,6 @@ Contributing to accumulators
 Copyright
 ---------
 
-Copyright (c) 2010 Gavin Heavyside. See LICENSE.txt for
+Copyright (c) 2010-2011 Gavin Heavyside. See LICENSE.txt for
 further details.
 
