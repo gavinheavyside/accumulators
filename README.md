@@ -16,15 +16,25 @@ Example Usage
 
     $ irb
     >> require 'accumulators'
-    >> mean = Accumulators::Mean.new
-    >> mean.add 1
-    >> mean.add 2
-    >> mean.add 3
-    >> mean.add 4
-    >> mean.count
+    >> meanvar = Accumulators:MeanVariance.new
+    >> meanvar.add 1
+    >> meanvar.add 2
+    >> meanvar.add 3
+    >> meanvar.add 4
+    >> meanvar.count
     => 4
-    >> mean.mean
+    >> meanvar.mean
     => 2.5
+    >> meanvar.variance
+    => 1.0
+    >> meanvar.variance(type: :sample)
+    => 1.0
+    >> meanvar.variance(type: :population)
+    => 1.25
+    >> meanvar.stddev
+    => 1.0
+    >> meanvar.stddev(type: :population)
+    => 1.118033988749895
 
 Available accumulators
 ----------------------
@@ -36,7 +46,6 @@ Available accumulators
 TODO
 ----
 
-* Allow choosing between biased & unbiased variance/standard devation
 * Skew?
 * Weighted Means
 * min, max, and min-max
