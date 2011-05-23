@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/hgavin/accumulators}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.4.2}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{Statistical accumulators for Ruby}
 
   if s.respond_to? :specification_version then
