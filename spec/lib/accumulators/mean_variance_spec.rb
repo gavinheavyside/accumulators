@@ -4,7 +4,7 @@ module Accumulators
   describe MeanVariance do
     let(:meanvar){MeanVariance.new}
 
-    context "Creation" do
+    context "When creating" do
       it "can be created" do
         lambda{ MeanVariance.new }.should_not raise_error
       end
@@ -12,11 +12,11 @@ module Accumulators
       it "returns count,mean,var of 0,0.0,0.0 before anything is added" do
         meanvar.count.should == 0
         meanvar.mean.should be_within(EPSILON).of(0.0)
-        meanvar.variance.should be_within(EPSILON).of(0.0)
+        meanvar.variance(type: :population).should be_within(EPSILON).of(0.0)
       end
     end
 
-    context "adding numbers or distributions" do
+    context "When adding numbers or distributions" do
       it "allows integers to be added" do
         lambda{ meanvar.add 5 }.should_not raise_error
       end
@@ -40,24 +40,47 @@ module Accumulators
           ArgumentError,
           "You may not add Accumulators::Mean to Accumulators::MeanVariance")
       end
-    end
 
-    context "correctness of calcs when adding numbers" do
-      it "should calculate the mean and variance correctly for a set of numbers" do
-        vals = []
-        1000.times do
-          vals << rand * 10000
-          meanvar.add vals.last
-        end
-
-        meanvar.count.should == vals.size
-        meanvar.mean.should be_within(EPSILON).of(vals.reduce(:+)/vals.size)
-        meanvar.variance.should be_within(EPSILON).of(vals.map{|v| (v - meanvar.mean)**2}.reduce(:+) / vals.size)
+      it "raises an ArgumentError if an unknown type of variance is requested" do
+        lambda{ meanvar.variance(type: :unknown) }.should raise_error(
+          ArgumentError,
+          "type must be one of :sample, :population")
       end
     end
 
-    context "correctness of calcs when adding MeanVariance accumulators" do
-      it "should combine two MeanVariances correctly" do
+    context "When checking correctness of biased/population calculations" do
+      before do
+        @vals = []
+        1000.times do
+          @vals << rand * 10000
+          meanvar.add @vals.last
+        end
+      end
+
+      it "calculates the count and mean correctly for a set of numbers" do
+        meanvar.count.should == @vals.size
+        meanvar.mean.should be_within(EPSILON).of(@vals.reduce(:+)/@vals.size)
+      end
+
+      it "calculates the population variance and stddev correctly" do
+        variance = @vals.map{|v| (v - meanvar.mean)**2}.reduce(:+) / @vals.size 
+        meanvar.variance(type: :population).should be_within(EPSILON).of(variance)
+        meanvar.stddev(type: :population).should be_within(EPSILON).of(Math.sqrt(variance))
+      end
+
+      it "calculates the sample variance and stddev correctly" do
+        variance = @vals.map{|v| (v - meanvar.mean)**2}.reduce(:+) / (@vals.size + 1)
+        meanvar.variance(type: :sample).should be_within(EPSILON).of(variance)
+        meanvar.stddev(type: :sample).should be_within(EPSILON).of(Math.sqrt(variance))
+      end
+
+      it "defaults to sample variance" do
+        meanvar.variance.should be_within(EPSILON).of(meanvar.variance(type: :sample))
+      end
+    end
+
+    context "When combining MeanVariances" do
+      it "combines two MeanVariances correctly" do
         vals = []
         mv2 = MeanVariance.new
         500.times do
@@ -71,7 +94,7 @@ module Accumulators
 
         meanvar.count.should == vals.size
         meanvar.mean.should be_within(EPSILON).of(vals.reduce(:+)/vals.size)
-        meanvar.variance.should be_within(EPSILON).of(vals.map{|v| (v - meanvar.mean)**2}.reduce(:+) / vals.size)
+        meanvar.variance(type: :population).should be_within(EPSILON).of(vals.map{|v| (v - meanvar.mean)**2}.reduce(:+) / vals.size)
       end
     end
 

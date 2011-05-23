@@ -32,12 +32,20 @@ module Accumulators
       end
     end
 
-    def variance
-      @count > 1 ? (@sumsq / (@count)) : 0.0
+    def variance(options = {})
+      if options[:type] and not [:sample, :population].include? options[:type]
+        raise ArgumentError.new("type must be one of :sample, :population")
+      end
+
+      if options[:type] == :population
+        @count > 1 ? (@sumsq / (@count)) : 0.0
+      else
+        @count > 1 ? (@sumsq / (@count + 1)) : 0.0
+      end
     end
 
-    def stddev
-      Math.sqrt(variance)
+    def stddev(options = {})
+      Math.sqrt(variance(options))
     end
 
   end
