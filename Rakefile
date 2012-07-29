@@ -13,7 +13,7 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "accumulators"
-  gem.homepage = "http://github.com/hgavin/accumulators"
+  gem.homepage = "http://github.com/gavinheavyside/accumulators"
   gem.license = "MIT"
   gem.summary = %Q{Statistical accumulators for Ruby}
   gem.description = %Q{Statistical accumulators for Ruby}
