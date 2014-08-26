@@ -1,19 +1,5 @@
-source "http://rubygems.org"
-# Add dependencies required to use your gem here.
-# Example:
-#   gem "activesupport", ">= 2.3.5"
+source "https://rubygems.org"
 
-gem 'rake'
+gemspec
 
-# Add dependencies to develop your gem here.
-# Include everything needed to run rake, tests, features, etc.
-group :development, :test do
-  gem "rspec", "~> 2.8"
-  gem "bundler", ">= 1.0"
-  gem "jeweler", "~> 1.6"
-  gem "simplecov"
-  gem "guard"
-  gem "guard-rspec"
-  gem "ruby_gntp"
-end
-
+gem 'transpec'
