@@ -1,6 +1,8 @@
 accumulators
 ============
 
+[![Build Status](https://api.shippable.com/projects/53fc7ee1f2cfa3a3088b8d74/badge/master)](https://www.shippable.com/projects/53fc7ee1f2cfa3a3088b8d74)
+
 A set of statistical accumulators for Ruby. There is a range of containers for
 different measures, such as count, sum, mean, and mean-variance. You can add values to
 the containers, and ask for their respective statistical measures. 
